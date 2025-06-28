@@ -1,0 +1,279 @@
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: #f4f4f9;
+  margin: 0;
+  color: #222;
+}
+
+header {
+  background: #22223b;
+  color: #fff;
+  padding: 2rem 0 1rem 0;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+header h1 {
+  margin: 0 0 0.5rem 0;
+  font-size: 2.5rem;
+  letter-spacing: 2px;
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+
+nav a {
+  color: #c9ada7;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.2s;
+}
+
+nav a:hover {
+  color: #f2e9e4;
+}
+
+main {
+  max-width: 700px;
+  margin: 2rem auto;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+  padding: 2rem 2.5rem;
+}
+
+article h2 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  color: #4a4e69;
+}
+
+.autor {
+  color: #9a8c98;
+  font-size: 0.95rem;
+  margin-bottom: 1.5rem;
+}
+
+.articulo-img {
+  width: 100%;
+  max-height: 320px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  transition: transform 0.7s cubic-bezier(.77,0,.18,1), box-shadow 0.7s;
+}
+
+article p {
+  line-height: 1.7;
+  margin-bottom: 1.2rem;
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+blockquote {
+  border-left: 4px solid #4a4e69;
+  background: #f2e9e4;
+  color: #22223b;
+  margin: 1.5rem 0;
+  padding: 1rem 1.5rem;
+  font-style: italic;
+  border-radius: 6px;
+}
+
+footer {
+  background: #22223b;
+  color: #fff;
+  text-align: center;
+  padding: 1rem 0;
+  margin-top: 2rem;
+  font-size: 1rem;
+  border-radius: 0 0 12px 12px;
+}
+
+/* Estilo para subtítulos dentro del artículo */
+article h3 {
+  color: #9a8c98;
+  font-size: 1.2rem;
+  margin-top: 2rem;
+  margin-bottom: 0.7rem;
+  font-weight: 600;
+}
+
+/* Estilo de "borrador" para el artículo */
+article {
+  position: relative;
+  animation: fadeIn 1.2s ease;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: none; }
+}
+
+article::after {
+  content: 'BORRADOR';
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-20deg);
+  font-size: 4rem;
+  color: rgba(200, 100, 100, 0.12);
+  font-weight: bold;
+  pointer-events: none;
+  user-select: none;
+  letter-spacing: 0.2em;
+  z-index: 2;
+  animation: borradorBlink 2.5s infinite alternate;
+}
+@keyframes borradorBlink {
+  from { opacity: 0.12; }
+  to { opacity: 0.22; }
+}
+
+/* Gráfica de barras para datos estadísticos */
+.grafica-barras {
+  margin: 2.5rem auto 1.5rem auto;
+  padding: 1.5rem 1rem;
+  background: #f2e9e4;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  max-width: 420px;
+}
+.barra {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.1rem;
+}
+.etiqueta {
+  width: 110px;
+  font-weight: 600;
+  color: #4a4e69;
+  font-size: 1rem;
+}
+.barra-valor {
+  height: 32px;
+  background: linear-gradient(90deg, #9a8c98 60%, #4a4e69 100%);
+  color: #fff;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  border-radius: 6px;
+  padding-right: 16px;
+  font-size: 1rem;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+  transition: width 1.2s cubic-bezier(.77,0,.18,1);
+  width: 0;
+  opacity: 0.9;
+}
+.grafica-barras.animada .barra-valor {
+  opacity: 1;
+}
+.barra:last-child {
+  margin-bottom: 0;
+}
+
+/* Zoom animado para la imagen principal */
+.articulo-img:hover {
+  transform: scale(1.06) rotate(-1deg);
+  box-shadow: 0 8px 32px rgba(74,78,105,0.18);
+}
+
+/* Subrayado animado en títulos */
+article h2::after, article h3::after {
+  content: '';
+  position: absolute;
+  left: 0; bottom: 0;
+  width: 100%; height: 3px;
+  background: linear-gradient(90deg, #9a8c98 60%, #4a4e69 100%);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s cubic-bezier(.77,0,.18,1);
+}
+article h2:hover::after, article h3:hover::after {
+  transform: scaleX(1);
+}
+
+/* Rebote en el menú al hacer scroll */
+nav.nav-bounce {
+  animation: navBounce 0.35s cubic-bezier(.77,0,.18,1);
+}
+@keyframes navBounce {
+  0% { transform: translateY(-8px) scale(1.04); }
+  60% { transform: translateY(4px) scale(0.98); }
+  100% { transform: none; }
+}
+
+/* --- RESPONSIVE DESIGN --- */
+@media (max-width: 900px) {
+  main {
+    max-width: 95vw;
+    padding: 1.2rem 0.7rem;
+  }
+  .grafica-barras {
+    max-width: 98vw;
+    padding: 1rem 0.3rem;
+  }
+}
+@media (max-width: 600px) {
+  header h1 {
+    font-size: 1.5rem;
+  }
+  nav ul {
+    gap: 1rem;
+    flex-direction: column;
+  }
+  main {
+    padding: 0.7rem 0.2rem;
+    border-radius: 0;
+    box-shadow: none;
+  }
+  .articulo-img {
+    max-height: 180px;
+    border-radius: 6px;
+  }
+  .grafica-barras {
+    max-width: 100vw;
+    padding: 0.7rem 0.1rem;
+    border-radius: 6px;
+  }
+  .barra-valor {
+    font-size: 0.95rem;
+    height: 24px;
+    padding-right: 8px;
+  }
+  article h2 {
+    font-size: 1.1rem;
+  }
+  article h3 {
+    font-size: 1rem;
+  }
+  .etiqueta {
+    width: 80px;
+    font-size: 0.95rem;
+  }
+  footer {
+    font-size: 0.9rem;
+    border-radius: 0 0 6px 6px;
+  }
+}
+
+/* Eliminar posibles márgenes/paddings extra que causen movimiento abrupto */
+html, body {
+  height: 100%;
+  min-height: 100%;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+body {
+  padding-bottom: 0 !important;
+}
+main {
+  margin-bottom: 1.5rem;
+}
